@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolios — Thiink Media Graphics</title>
+  <meta name="description" content="Two volumes of client work, drawn from the studio's archive. Open MMXXV for the current portfolio, or MMXXIII for the founding-era archive." />
+  <link rel="stylesheet" href="assets/brand.css" />
+  <link rel="icon" href="assets/logos/mark-monogram.svg" type="image/svg+xml" />
+
+  <style>
+    /* ---------- Portfolio · Volume cards ---------- */
+    .volumes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(28px, 4vw, 56px);
+      margin-top: clamp(36px, 4vw, 56px);
+    }
+    @media (min-width: 1080px) {
+      .volumes { grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(201,166,97,.16); border: 1px solid rgba(201,166,97,.16); }
+    }
+
+    .volume {
+      position: relative;
+      background: var(--shark-black);
+      padding: clamp(32px, 3.6vw, 56px);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(22px, 2.4vw, 32px);
+      overflow: hidden;
+      isolation: isolate;
+      transition: background .5s var(--ease-out);
+    }
+    .volume::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(circle at 80% 0%, rgba(201,166,97,.16) 0%, transparent 55%);
+      opacity: 0; transition: opacity .6s var(--ease-out);
+    }
+    .volume:hover::before { opacity: 1; }
+
+    .volume__head {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
+      border-bottom: 1px solid rgba(201,166,97,.18);
+      padding-bottom: clamp(14px, 1.6vw, 22px);
+    }
+    .volume__eyebrow {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .volume__status {
+      font-family: var(--font-display);
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(251,255,255,.45);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .volume__status::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(251,255,255,.3);
+    }
+    .volume__status.is-live::before { background: var(--gold); box-shadow: 0 0 0 4px rgba(201,166,97,.18); }
+
+    .volume__numeral {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 10vw, 156px);
+      line-height: .88;
+      letter-spacing: -.02em;
+      color: var(--fbffff, #fbffff);
+      display: block;
+    }
+    .volume__numeral em {
+      font-style: italic; font-family: var(--font-body); color: var(--gold);
+      font-size: .58em; letter-spacing: 0; padding-left: 4px;
+    }
+    .volume__year {
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.4em;
+      color: rgba(251,255,255,.5);
+      margin-top: -8px;
+    }
+
+    .volume__title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 2.6vw, 38px);
+      line-height: 1.08;
+      max-width: 22ch;
+    }
+    .volume__title em { color: var(--gold); font-style: italic; font-family: var(--font-body); }
+
+    .volume__copy {
+      color: rgba(251,255,255,.7);
+      font-size: 15.5px;
+      max-width: 52ch;
+    }
+
+    .volume__preview {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border: 1px solid rgba(201,166,97,.22);
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(135deg, rgba(201,166,97,.05) 0 1px, transparent 1px 14px),
+        var(--shark-black-deep);
+      display: block;
+    }
+    .volume__preview iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 250%;
+      height: 250%;
+      border: 0;
+      transform: scale(.4);
+      transform-origin: 0 0;
+      pointer-events: none;
+      background: #fff;
+    }
+    .volume__preview--image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 1.2s var(--ease-out);
+    }
+    .volume__preview--image:hover img { transform: scale(1.04); }
+    .volume__preview .preview-corner {
+      position: absolute;
+      top: 14px; left: 14px;
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(24,25,27,.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 7px 12px;
+      border: 1px solid rgba(201,166,97,.22);
+      z-index: 2;
+    }
+    .volume__preview .preview-host {
+      position: absolute;
+      bottom: 14px; left: 14px;
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      color: rgba(251,255,255,.6);
+      background: rgba(24,25,27,.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 7px 12px;
+      border: 1px solid rgba(251,255,255,.08);
+      z-index: 2;
+    }
+    .volume__preview::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(24,25,27,.05) 0%, rgba(24,25,27,.55) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .volume__meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,166,97,.14);
+      border-top: 1px solid rgba(201,166,97,.14);
+      border-bottom: 1px solid rgba(201,166,97,.14);
+    }
+    .volume__meta > div {
+      background: var(--shark-black);
+      padding: 16px 14px;
+    }
+    .volume__meta dt {
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(251,255,255,.45);
+      margin-bottom: 6px;
+    }
+    .volume__meta dd {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 15px;
+      color: var(--fbffff, #fbffff);
+    }
+
+    .volume__cta {
+      display: flex; flex-wrap: wrap; gap: 14px; margin-top: auto;
+    }
+
+    /* ---------- Reference strip ---------- */
+    .ref-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,166,97,.16);
+      border: 1px solid rgba(201,166,97,.16);
+      margin-top: clamp(36px, 4vw, 56px);
+    }
+    @media (max-width: 720px) { .ref-strip { grid-template-columns: 1fr; } }
+    .ref-strip__cell {
+      background: var(--shark-black);
+      padding: clamp(24px, 2.6vw, 38px);
+    }
+    .ref-strip__num {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+    }
+    .ref-strip__h {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 1.8vw, 26px);
+      margin: 14px 0 10px;
+    }
+    .ref-strip__h em { color: var(--gold); font-style: italic; font-family: var(--font-body); }
+    .ref-strip__p {
+      color: rgba(251,255,255,.65);
+      font-size: 14.5px;
+    }
+
+    /* ---------- Roster (selected clients) ---------- */
+    .roster {
+      column-count: 3;
+      column-gap: clamp(24px, 3vw, 48px);
+      margin-top: clamp(20px, 2.4vw, 32px);
+      font-family: var(--font-display);
+      font-size: clamp(16px, 1.4vw, 19px);
+      color: rgba(251,255,255,.78);
+      line-height: 1.9;
+    }
+    @media (max-width: 880px) { .roster { column-count: 2; } }
+    @media (max-width: 540px) { .roster { column-count: 1; } }
+    .roster span {
+      display: block;
+      break-inside: avoid;
+      border-bottom: 1px solid rgba(201,166,97,.10);
+      padding: 4px 0;
+    }
+    .roster span em {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--gold);
+      font-size: .78em;
+      letter-spacing: .04em;
+      margin-left: 8px;
+    }
+
+    /* ---------- Patronage cards ---------- */
+    .patronage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(201,166,97,.16);
+      border: 1px solid rgba(201,166,97,.16);
+      margin-top: clamp(28px, 3vw, 44px);
+    }
+    @media (max-width: 880px) { .patronage { grid-template-columns: 1fr; } }
+    .patronage__card {
+      background: var(--shark-black);
+      padding: clamp(32px, 3.6vw, 56px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      text-decoration: none;
+      color: inherit;
+      transition: background .5s var(--ease-out);
+    }
+    .patronage__card::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(circle at 80% 0%, rgba(201,166,97,.18) 0%, transparent 55%);
+      opacity: 0; transition: opacity .6s var(--ease-out);
+    }
+    .patronage__card:hover::before { opacity: 1; }
+    .patronage__card:hover { background: var(--shark-black-deep); }
+    .patronage__num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: .2em;
+      color: var(--gold);
+    }
+    .patronage__stars {
+      display: flex; gap: 6px;
+      color: var(--gold);
+      font-size: 22px;
+      letter-spacing: .15em;
+      margin: 4px 0 6px;
+    }
+    .patronage__coin {
+      color: var(--gold);
+      margin: 0 0 4px -6px;
+    }
+    .patronage__h {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 2.8vw, 38px);
+      line-height: 1.08;
+      margin: 0;
+    }
+    .patronage__h em { color: var(--gold); font-style: italic; font-family: var(--font-body); }
+    .patronage__p {
+      color: rgba(251,255,255,.7);
+      font-size: 15.5px;
+      max-width: 48ch;
+      margin: 6px 0 14px;
+    }
+    .patronage__meta {
+      font-family: var(--font-display);
+      font-size: 10.5px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(251,255,255,.5);
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(201,166,97,.16);
+    }
+    .patronage__cta {
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex; align-items: center; gap: 12px;
+      margin-top: 18px;
+    }
+    .patronage__cta .arrow {
+      transition: transform .3s var(--ease-out);
+    }
+    .patronage__card:hover .patronage__cta .arrow {
+      transform: translateX(6px);
+    }
+  </style>
+</head>
+<body data-screen-label="03 Portfolios">
+
+  <!-- ============ NAV ============ -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-mark">
+      <span class="nav-mark__mono" data-logo="assets/logos/mark-monogram.svg"></span>
+      <span class="nav-mark__word">
+        Thiink Media Graphics
+        <span class="small">V·III · 2026</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Studio</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html" class="active">Portfolios</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="news.html">Journal</a>
+    </div>
+    <a href="https://form.typeform.com/to/QtfADswh?typeform-source=www.thiinkmediagraphics.com" target="_blank" rel="noopener" class="nav-cta" data-magnetic="8">Begin</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- ============ PAGE INTRO ============ -->
+  <section class="page-intro">
+    <div class="page-intro__bg" data-parallax="0.18"
+         style="background-image: url('assets/img/acropolis.jpg'); background-position: center 28%;"></div>
+    <div class="wrap">
+      <div class="page-intro__crumbs" data-reveal>
+        <span>Thiink Media Graphics</span>
+        <span class="sep">/</span>
+        <span class="gold">Portfolios</span>
+        <span class="sep">·</span>
+        <span>Two Editions · 2023 — 2025</span>
+      </div>
+      <h1 class="page-intro__title" data-reveal>
+        <span class="line-mask"><span>The work,</span></span>
+        <span class="line-mask"><span><em>archived.</em></span></span>
+      </h1>
+      <p class="page-intro__deck" data-reveal data-reveal-delay="3">
+        Seven years of client work, bound into two volumes. Each portfolio is a record of a season in the studio — its tools, its taste, the brands it shaped. Open either to read it end-to-end.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ I · THE VOLUMES ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker-row" data-reveal>
+        <span class="roman">I</span>
+        <div>
+          <span class="eyebrow">Chapter I · The Volumes</span>
+          <h2 class="section-title mt-s">Two editions. <em>Open either.</em></h2>
+        </div>
+      </div>
+
+      <div class="grid12">
+        <div class="col-left" data-reveal>
+          <p class="lede">
+            We publish a new portfolio when the studio's work has moved enough to warrant a re-edit. Older editions remain in the archive — they document the season they were made in.
+          </p>
+        </div>
+        <div class="col-right" data-reveal data-reveal-delay="2">
+          <p>
+            The <em class="serif-italic">2025</em> volume is the current edition — the studio as it stands today, in full color. The <em class="serif-italic">2023</em> volume is the founding-era archive, kept intact for reference. Both are linked below.
+          </p>
+        </div>
+      </div>
+
+      <!-- ====== TWO VOLUMES ====== -->
+      <div class="volumes">
+
+        <!-- ============ VOLUME II · 2025 ============ -->
+        <article class="volume" data-reveal>
+          <div class="volume__head">
+            <span class="volume__eyebrow">Volume II · Current</span>
+            <span class="volume__status is-live">Live · 2025</span>
+          </div>
+
+          <div>
+            <div class="volume__numeral">2025<em>—</em></div>
+            <div class="volume__year">Anno · Two Thousand &amp; Twenty-Five</div>
+          </div>
+
+          <h3 class="volume__title">The studio in its <em>present voice</em> — the work as it stands today.</h3>
+
+          <p class="volume__copy">
+            A re-edited portfolio published on a custom Next.js build. Brand identities, web artisanry, print, and packaging — drawn from the last eighteen months of studio output.
+          </p>
+
+          <a href="https://thiink-portfolio.vercel.app/" target="_blank" rel="noopener" class="volume__preview" aria-label="Open the 2025 portfolio in a new tab">
+            <span class="preview-corner">Preview · 2025</span>
+            <span class="preview-host">thiink-portfolio.vercel.app</span>
+            <iframe src="https://thiink-portfolio.vercel.app/" loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin" title="2025 Portfolio Preview" tabindex="-1"></iframe>
+          </a>
+
+          <dl class="volume__meta">
+            <div>
+              <dt>Edition</dt>
+              <dd>II of II</dd>
+            </div>
+            <div>
+              <dt>Format</dt>
+              <dd>Web · Next.js</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>Current</dd>
+            </div>
+          </dl>
+
+          <div class="volume__cta">
+            <a href="https://thiink-portfolio.vercel.app/" target="_blank" rel="noopener" class="btn btn--gold" data-magnetic="10">
+              Open 2025 <span class="arrow"></span>
+            </a>
+            <a href="https://form.typeform.com/to/QtfADswh?typeform-source=www.thiinkmediagraphics.com" target="_blank" rel="noopener" class="btn btn--ghost">
+              Start Project <span class="arrow"></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- ============ VOLUME I · 2023 ============ -->
+        <article class="volume" data-reveal data-reveal-delay="2">
+          <div class="volume__head">
+            <span class="volume__eyebrow">Volume I · Archive</span>
+            <span class="volume__status">Preserved · 2023</span>
+          </div>
+
+          <div>
+            <div class="volume__numeral">2023<em>—</em></div>
+            <div class="volume__year">Anno · Two Thousand &amp; Twenty-Three</div>
+          </div>
+
+          <h3 class="volume__title">The founding-era <em>record</em> — kept intact in the archive.</h3>
+
+          <p class="volume__copy">
+            The studio's first formal portfolio, published on Canva. A record of the early seasons — graphics, brand sketches, and the work that established the house style.
+          </p>
+
+          <a href="https://testtmg.my.canva.site/thiinkmg-portfolio" target="_blank" rel="noopener" class="volume__preview volume__preview--image" aria-label="Open the 2023 portfolio in a new tab">
+            <span class="preview-corner">Cover · 2023</span>
+            <span class="preview-host">testtmg.my.canva.site</span>
+            <img src="assets/img/portfolio-2023-cover.png" alt="2023 Client Design Portfolio — Thiink Media Graphics cover art" loading="lazy" />
+          </a>
+
+          <dl class="volume__meta">
+            <div>
+              <dt>Edition</dt>
+              <dd>I of II</dd>
+            </div>
+            <div>
+              <dt>Format</dt>
+              <dd>Web · Canva</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>Archive</dd>
+            </div>
+          </dl>
+
+          <div class="volume__cta">
+            <a href="https://testtmg.my.canva.site/thiinkmg-portfolio" target="_blank" rel="noopener" class="btn btn--gold" data-magnetic="10">
+              Open 2023 <span class="arrow"></span>
+            </a>
+            <a href="https://form.typeform.com/to/QtfADswh?typeform-source=www.thiinkmediagraphics.com" target="_blank" rel="noopener" class="btn btn--ghost">
+              Start Project <span class="arrow"></span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FULL-BLEED IMAGE ============ -->
+  <section class="full-bleed parallax">
+    <div class="full-bleed__img" data-parallax="0.22"
+         style="background-image: url('assets/img/colosseum.jpg');"></div>
+    <div class="full-bleed__overlay"></div>
+    <div class="full-bleed__caption wrap" data-reveal>
+      <span class="eyebrow">— On the archive —</span>
+      <p class="pullquote mt-m" style="max-width: 30ch;">
+        A studio's portfolio is not a brochure. It is a <em>ledger</em> of what the work has been.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ II · HOW TO READ ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker-row" data-reveal>
+        <span class="roman">II</span>
+        <div>
+          <span class="eyebrow">Chapter II · How to Read</span>
+          <h2 class="section-title mt-s">Three ways through <em>the work.</em></h2>
+        </div>
+      </div>
+
+      <div class="ref-strip">
+        <div class="ref-strip__cell" data-reveal>
+          <div class="ref-strip__num">01 · Newest</div>
+          <h3 class="ref-strip__h">Start at <em>2025</em></h3>
+          <p class="ref-strip__p">The current edition. The fastest read for prospective clients — recent brand systems, web builds, and packaging.</p>
+        </div>
+        <div class="ref-strip__cell" data-reveal data-reveal-delay="1">
+          <div class="ref-strip__num">02 · Origin</div>
+          <h3 class="ref-strip__h">Open <em>2023</em></h3>
+          <p class="ref-strip__p">The founding-era archive. Useful for understanding the studio's evolution from graphics-house to brand architect.</p>
+        </div>
+        <div class="ref-strip__cell" data-reveal data-reveal-delay="2">
+          <div class="ref-strip__num">03 · Read both</div>
+          <h3 class="ref-strip__h">Trace the <em>arc</em></h3>
+          <p class="ref-strip__p">Two volumes, side by side. The clearest evidence of where the studio has been — and where it is now headed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ III · SELECTED CLIENTS ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker-row" data-reveal>
+        <span class="roman">III</span>
+        <div>
+          <span class="eyebrow">Chapter III · Selected Clients</span>
+          <h2 class="section-title mt-s">Drawn from both <em>volumes.</em></h2>
+        </div>
+      </div>
+
+      <div class="grid12">
+        <div class="col-left" data-reveal>
+          <p class="lede">
+            A non-exhaustive list of partners across both editions. Full case studies live inside each portfolio.
+          </p>
+        </div>
+        <div class="col-right" data-reveal data-reveal-delay="2">
+          <div class="roster">
+            <span>Brand Identities <em>· 2025</em></span>
+            <span>Web Artisanry <em>· 2025</em></span>
+            <span>Hospitality Group <em>· 2025</em></span>
+            <span>Wellness Studio <em>· 2025</em></span>
+            <span>Real Estate Co. <em>· 2024</em></span>
+            <span>Nonprofit Initiative <em>· 2024</em></span>
+            <span>Print Campaign <em>· 2023</em></span>
+            <span>Packaging System <em>· 2023</em></span>
+            <span>Editorial Layout <em>· 2023</em></span>
+          </div>
+          <p class="mt-l" style="font-size: 13px; color: rgba(251,255,255,.5); font-family: var(--font-display); letter-spacing: .15em; text-transform: uppercase;">
+            — A full client roster is available on request —
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="stats" data-reveal="fade">
+        <div class="stat">
+          <div class="stat__num"><span data-count="2">2</span></div>
+          <div class="stat__label">Bound volumes · 2023 &amp; 2025</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="25" data-count-suffix="+">25+</span></div>
+          <div class="stat__label">Brands documented across both</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="7">7</span></div>
+          <div class="stat__label">Years of studio output</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="100" data-count-suffix="%">100%</span></div>
+          <div class="stat__label">Work produced in-house</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IV · PATRONAGE ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker-row" data-reveal>
+        <span class="roman">IV</span>
+        <div>
+          <span class="eyebrow">Chapter IV · Patronage</span>
+          <h2 class="section-title mt-s">If the work moved you, <em>say so.</em></h2>
+        </div>
+      </div>
+
+      <div class="grid12">
+        <div class="col-left" data-reveal>
+          <p class="lede">
+            Two small acts that help an independent studio keep its standards — a public review for future clients, or a private tip for the team.
+          </p>
+        </div>
+        <div class="col-right"></div>
+      </div>
+
+      <div class="patronage">
+        <a href="https://g.page/r/Cblzq7Mndxo8EAI/review"
+           target="_blank" rel="noopener"
+           class="patronage__card"
+           data-reveal>
+          <span class="patronage__num">I.</span>
+          <div class="patronage__stars" aria-hidden="true">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <h3 class="patronage__h">Leave a <em>review</em></h3>
+          <p class="patronage__p">A few honest sentences on Google. The clearest favor you can do for a small studio — it lasts longer than any campaign we could buy.</p>
+          <span class="patronage__meta">Google Business · 5.0 ★ average</span>
+          <span class="patronage__cta">Write a review <span class="arrow"></span></span>
+        </a>
+
+        <a href="https://www.hopp.bio/thiinkmg"
+           target="_blank" rel="noopener"
+           class="patronage__card"
+           data-reveal data-reveal-delay="2">
+          <span class="patronage__num">II.</span>
+          <div class="patronage__coin" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="60" height="60" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <!-- outer rim -->
+              <circle cx="32" cy="32" r="29" stroke-width="1.2"/>
+              <!-- inner dotted ring (coin field border) -->
+              <circle cx="32" cy="32" r="23.5" stroke-width="0.6" stroke-dasharray="0.6 2.4"/>
+              <!-- four cardinal dots (coin field markers) -->
+              <circle cx="32" cy="9.5" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="32" cy="54.5" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="9.5" cy="32" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="54.5" cy="32" r="0.9" fill="currentColor" stroke="none"/>
+              <!-- embossed $ -->
+              <path d="M32 18.5 L32 45.5" stroke-width="1.4"/>
+              <path d="M38 23 C38 21 35 20 32 20 C28.5 20 25.5 21.5 25.5 24.5 C25.5 27.5 28.5 28.5 32 29.5 C35.5 30.5 38.5 31.5 38.5 34.5 C38.5 37.5 35.5 39 32 39 C28.5 39 25.5 38 24.5 36"
+                    stroke-width="1.4"/>
+              <!-- laurel sprig hint at bottom -->
+              <path d="M24 47 Q28 50 32 50 Q36 50 40 47" stroke-width="0.7"/>
+              <path d="M27 47 L26 45 M30 49 L29.5 47 M34 49 L34.5 47 M37 47 L38 45" stroke-width="0.7"/>
+            </svg>
+          </div>
+          <h3 class="patronage__h">Leave a <em>tip</em></h3>
+          <p class="patronage__p">A small gesture for the team behind the work. Routed through our Hopp page — no account required, any amount welcomed.</p>
+          <span class="patronage__meta">Hopp · hopp.bio/thiinkmg</span>
+          <span class="patronage__cta">Send a tip <span class="arrow"></span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-foot" id="contact">
+    <div class="wrap">
+      <div class="foot-cta" data-reveal>
+        <span class="eyebrow plain center" style="justify-content:center;display:flex;">— Next chapter —</span>
+        <h2 class="mt-m">Read the work, then<br/><em>tell us yours.</em></h2>
+        <p class="lede muted center" style="margin: 0 auto 36px;">
+          When you've finished a volume, write to us. A short conversation, then a written proposal within seven days.
+        </p>
+        <div class="hero__cta-row" style="justify-content:center;">
+          <a href="mailto:team@thiinkmediagraphics.com" class="btn btn--gold" data-magnetic="12">Begin a Project <span class="arrow"></span></a>
+          <a href="pricing.html" class="btn btn--ghost">See pricing <span class="arrow"></span></a>
+        </div>
+      </div>
+
+      <div class="foot-grid">
+        <div class="foot-col">
+          <span class="foot-logo" data-logo="assets/logos/wordmark-greek.svg"></span>
+          <p>Brand &amp; design studio.<br/>Stone Mountain, Georgia.<br/>Est. MMXIX.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Studio</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolios</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="news.html">Journal</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Volumes</h4>
+          <ul>
+            <li><a href="https://thiink-portfolio.vercel.app/" target="_blank" rel="noopener">2025 · Current</a></li>
+            <li><a href="https://testtmg.my.canva.site/thiinkmg-portfolio" target="_blank" rel="noopener">2023 · Archive</a></li>
+            <li><a href="https://www.thiinkmediagraphics.com/client-portfolios" target="_blank" rel="noopener">Main site index</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:team@thiinkmediagraphics.com">team@thiinkmediagraphics.com</a></li>
+            <li><a href="tel:+14708373775">+1 (470) 837-3775</a></li>
+            <li>Stone Mountain · GA</li>
+            <li class="mt-s"><a href="https://g.page/r/Cblzq7Mndxo8EAI/review" target="_blank" rel="noopener">Leave a review · Google</a></li>
+            <li><a href="https://www.hopp.bio/thiinkmg" target="_blank" rel="noopener">Leave a tip · Hopp</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="foot-base">
+        <span>© MMXXVI · Thiink Media Graphics, LLC</span>
+        <span>Brand Guidelines V·III · 2026</span>
+        <a href="https://www.wix.com/studio/agencies" target="_blank" rel="noopener" class="foot-cert" aria-label="Wix Studio Certified Web Designer · Expert · 2025">
+          <img src="assets/logos/wix-studio-certified.png" alt="" />
+          <span>Wix Studio Certified · Expert · MMXXV</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>
