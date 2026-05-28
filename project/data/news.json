@@ -1,0 +1,82 @@
+[
+  {
+    "id": "monumentality",
+    "title": "On Monumentality — Why brands that endure feel carved, not printed.",
+    "category": "Philosophy",
+    "excerpt": "Three rules from Roman architecture that apply to every modern brand system we build — and the one most studios get exactly backwards.",
+    "date": "2026-05-12",
+    "readTime": "7 min read",
+    "cover": "assets/img/pantheon.jpg",
+    "url": "https://www.thiinkmediagraphics.com/post/monumentality"
+  },
+  {
+    "id": "two-eyes",
+    "title": "The second I is the discipline — A note on seeing twice.",
+    "category": "Studio Notes",
+    "excerpt": "Why we spell the studio name with two I's, and why most design decisions in 2026 are made too quickly to be true.",
+    "date": "2026-04-22",
+    "readTime": "4 min read",
+    "cover": "assets/img/caesar.jpg",
+    "url": "#"
+  },
+  {
+    "id": "restraint",
+    "title": "Restraint as a luxury good.",
+    "category": "Design Principles",
+    "excerpt": "The clients who let us remove the most are the ones who keep coming back. A case study in saying no to your own ideas.",
+    "date": "2026-03-30",
+    "readTime": "6 min read",
+    "cover": "assets/img/colosseum.jpg",
+    "url": "#"
+  },
+  {
+    "id": "ten-year",
+    "title": "The ten-year benchmark — A test we run on every visual decision.",
+    "category": "Process",
+    "excerpt": "If a logo, layout, or campaign won't still look right a decade from now, we don't ship it. Here is how we apply the test.",
+    "date": "2026-03-08",
+    "readTime": "5 min read",
+    "cover": "",
+    "url": "#"
+  },
+  {
+    "id": "gold-on-black",
+    "title": "Gold on black — The signature contrast and why it works.",
+    "category": "Color Theory",
+    "excerpt": "The optical case for our most-used color pair, and the four lighting conditions where it falls apart.",
+    "date": "2026-02-14",
+    "readTime": "4 min read",
+    "cover": "",
+    "url": "#"
+  },
+  {
+    "id": "wix-headless",
+    "title": "Why our 2026 site is built on Wix Headless.",
+    "category": "Engineering",
+    "excerpt": "A note from the build: how we decoupled content from presentation while keeping the editorial workflow we love.",
+    "date": "2026-01-29",
+    "readTime": "8 min read",
+    "cover": "",
+    "url": "#"
+  },
+  {
+    "id": "classical-imagery",
+    "title": "Marble, chiaroscuro, and the museum-not-stock approach.",
+    "category": "Imagery",
+    "excerpt": "Why we never use a stock library — and the small art history reading list every junior on the team gets handed.",
+    "date": "2026-01-10",
+    "readTime": "6 min read",
+    "cover": "",
+    "url": "#"
+  },
+  {
+    "id": "spartan-voice",
+    "title": "No exclamation points — A short manual on Spartan voice.",
+    "category": "Tone of Voice",
+    "excerpt": "The four-word voice rule we apply to every line of brand copy, and a before/after from a real client document.",
+    "date": "2025-12-18",
+    "readTime": "5 min read",
+    "cover": "",
+    "url": "#"
+  }
+]
