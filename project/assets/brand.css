@@ -1840,6 +1840,64 @@ em { font-style: italic; }
   .partners__track { gap: 48px; }
 }
 
+/* ---- 21k. Journal subscribe form ---- */
+.subscribe-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .subscribe-grid { grid-template-columns: 1fr; }
+}
+.subscribe-input-row {
+  display: flex;
+  border: 1px solid rgba(201,166,97,.4);
+  transition: border-color .3s var(--ease-out);
+}
+.subscribe-input-row:focus-within {
+  border-color: var(--gold);
+}
+.subscribe-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--heart-of-ice);
+  outline: none;
+  min-width: 0;
+}
+.subscribe-input::placeholder {
+  color: rgba(251,255,255,.38);
+}
+.subscribe-input-row .btn {
+  flex-shrink: 0;
+  padding: 16px 24px;
+}
+.subscribe-note {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: rgba(251,255,255,.35);
+  margin: 12px 0 0;
+  text-transform: uppercase;
+  max-width: none;
+}
+.subscribe-form--done {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
