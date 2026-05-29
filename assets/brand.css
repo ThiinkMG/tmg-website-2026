@@ -1948,6 +1948,10 @@ em { font-style: italic; }
 .partner-logo--tall {
   height: 72px;
 }
+.partner-logo--wide img {
+  height: 36px;
+  width: auto;
+}
 .partner-sep {
   display: inline-block;
   width: 6px; height: 6px;
