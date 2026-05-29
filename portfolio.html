@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolios — Thiink Media Graphics</title>
   <meta name="description" content="Two volumes of client work, drawn from the studio's archive. Open MMXXV for the current portfolio, or MMXXIII for the founding-era archive." />
+
+  <!-- Fix #7: Open Graph / Social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.thiinkmediagraphics.com/portfolio" />
+  <meta property="og:title" content="Portfolios — Thiink Media Graphics" />
+  <meta property="og:description" content="Two volumes of client work — 2025 and 2023. A ledger of what the work has been." />
+  <meta property="og:image" content="https://www.thiinkmediagraphics.com/assets/img/colosseum.jpg" />
+  <meta property="og:site_name" content="Thiink Media Graphics" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Portfolios — Thiink Media Graphics" />
+  <meta name="twitter:description" content="Two volumes of client work — 2025 and 2023. A ledger of what the work has been." />
+  <meta name="twitter:image" content="https://www.thiinkmediagraphics.com/assets/img/colosseum.jpg" />
+
   <link rel="stylesheet" href="assets/brand.css" />
   <link rel="icon" href="assets/logos/mark-monogram.svg" type="image/svg+xml" />
 
@@ -690,6 +703,38 @@
     </div>
   </section>
 
+  <!-- ============ JOURNAL SUBSCRIBE (Fix #4) ============ -->
+  <!-- Wire up the form action to your email service (Mailchimp, Kit, Beehiiv, etc.) -->
+  <section class="section--tight" style="background: var(--shark-black-deep); border-top: 1px solid rgba(201,166,97,.14); border-bottom: 1px solid rgba(201,166,97,.14);">
+    <div class="wrap">
+      <div class="subscribe-grid" data-reveal>
+        <div>
+          <span class="eyebrow">— The Journal —</span>
+          <h2 class="section-title mt-s" style="font-size: clamp(28px, 3.5vw, 48px);">Stay in the<br/><em>conversation.</em></h2>
+          <p class="muted mt-s" style="font-size: 15px; max-width: 44ch; margin-bottom: 0;">
+            Design thinking, brand strategy, and studio notes — published when there's something worth saying. No filler.
+          </p>
+        </div>
+        <form class="subscribe-form" novalidate>
+          <div class="subscribe-input-row">
+            <input
+              type="email"
+              name="email"
+              placeholder="Your email address"
+              required
+              autocomplete="email"
+              class="subscribe-input"
+            />
+            <button type="submit" class="btn btn--gold">
+              Subscribe <span class="arrow"></span>
+            </button>
+          </div>
+          <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FOOTER ============ -->
   <footer class="site-foot" id="contact">
     <div class="wrap">
@@ -700,7 +745,7 @@
           When you've finished a volume, write to us. A short conversation, then a written proposal within seven days.
         </p>
         <div class="hero__cta-row" style="justify-content:center;">
-          <a href="mailto:team@thiinkmediagraphics.com" class="btn btn--gold" data-magnetic="12">Begin a Project <span class="arrow"></span></a>
+          <a href="https://form.typeform.com/to/QtfADswh?typeform-source=www.thiinkmediagraphics.com" target="_blank" rel="noopener" class="btn btn--gold" data-magnetic="12">Begin a Project <span class="arrow"></span></a>
           <a href="pricing.html" class="btn btn--ghost">See pricing <span class="arrow"></span></a>
         </div>
       </div>
@@ -735,7 +780,6 @@
             <li><a href="tel:+14708373775">+1 (470) 837-3775</a></li>
             <li>Stone Mountain · GA</li>
             <li class="mt-s"><a href="https://g.page/r/Cblzq7Mndxo8EAI/review" target="_blank" rel="noopener">Leave a review · Google</a></li>
-            <li><a href="https://www.hopp.bio/thiinkmg" target="_blank" rel="noopener">Leave a tip · Hopp</a></li>
           </ul>
         </div>
       </div>
@@ -752,5 +796,26 @@
   </footer>
 
   <script src="assets/site.js"></script>
+  <script>
+  (function () {
+    const form = document.querySelector('.subscribe-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = (form.querySelector('input[type="email"]').value || '').trim();
+      if (!email) return;
+      window.open(
+        'https://form.typeform.com/to/QtfADswh?typeform-source=www.thiinkmediagraphics.com#email=' + encodeURIComponent(email),
+        '_blank',
+        'noopener'
+      );
+      form.innerHTML =
+        '<p class="subscribe-form--done">' +
+        '<span style="width:18px;height:1px;background:var(--gold);display:inline-block;flex-shrink:0;"></span>' +
+        'You\'re on the list — thank you.' +
+        '</p>';
+    });
+  })();
+  </script>
 </body>
 </html>
