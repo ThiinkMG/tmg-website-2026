@@ -1945,7 +1945,8 @@ em { font-style: italic; }
   filter: drop-shadow(0 1px 0 rgba(0,0,0,.4));
 }
 .partner-logo--tall { height: 56px; }
-.partner-logo--tall img { height: 56px; }
+.partner-logo--tall img,
+.partner-logo--tall svg { height: 56px; }
 .partner-sep {
   display: inline-block;
   width: 5px; height: 5px;

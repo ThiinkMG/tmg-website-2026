@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="44" viewBox="0 0 120 44">
+  <defs>
+    <linearGradient id="gfoil-a" x1="0" y1="0" x2="0" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#e8c872"/>
+      <stop offset="30%"  stop-color="#c9a661"/>
+      <stop offset="58%"  stop-color="#9c7c38"/>
+      <stop offset="80%"  stop-color="#c5a45a"/>
+      <stop offset="100%" stop-color="#7c5e1e"/>
+    </linearGradient>
+  </defs>
+  <!-- arc accent -->
+  <path d="M8 10 Q30 3 62 10" stroke="url(#gfoil-a)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- wordmark -->
+  <text x="4" y="33" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-weight="500" font-size="24" letter-spacing="-0.3" fill="url(#gfoil-a)">affirm</text>
+</svg>

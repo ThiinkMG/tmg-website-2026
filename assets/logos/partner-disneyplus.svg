@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="44" viewBox="0 0 150 44">
+  <defs>
+    <linearGradient id="gfoil-d" x1="0" y1="0" x2="0" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#e8c872"/>
+      <stop offset="30%"  stop-color="#c9a661"/>
+      <stop offset="58%"  stop-color="#9c7c38"/>
+      <stop offset="80%"  stop-color="#c5a45a"/>
+      <stop offset="100%" stop-color="#7c5e1e"/>
+    </linearGradient>
+  </defs>
+  <!-- Disney wordmark approximation in script style -->
+  <text x="2" y="34" font-family="Palatino Linotype,Palatino,Book Antiqua,Georgia,serif" font-style="italic" font-weight="700" font-size="28" fill="url(#gfoil-d)">Disney</text>
+  <!-- plus sign -->
+  <text x="116" y="31" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="22" fill="url(#gfoil-d)">+</text>
+</svg>
