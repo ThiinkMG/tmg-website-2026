@@ -1,25 +1,34 @@
-# CODING AGENTS: READ THIS FIRST
+# Thiink MG Website 2026
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+[![Website Status](https://img.shields.io/badge/Website-Live-brightgreen.svg?style=for-the-badge)](https://ThiinkMG.github.io/tmg-website-2026)
+[![Hosted on GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-blue.svg?style=for-the-badge)](https://pages.github.com/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://en.wikipedia.org/wiki/HTML5)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://en.wikipedia.org/wiki/CSS3)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://en.wikipedia.org/wiki/JavaScript)
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+Welcome to the **Thiink MG** website repository! This is the new home for our web presence in 2026.
 
-## What you should do — IMPORTANT
+## 🌐 View the Website
 
-**Read the chat transcripts first.** There are 2 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+You can view the live website here: **[https://ThiinkMG.github.io/tmg-website-2026](https://ThiinkMG.github.io/tmg-website-2026)**
 
-**Read `project/about.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+## 🚀 Features
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+- Modern and responsive design
+- Fast loading and optimized assets
+- Beautiful typography and dynamic elements
 
-## About the design files
+## 📂 Project Structure
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+- `assets/` - CSS styles, JavaScript files, and images
+- `data/` - JSON data files
+- `uploads/` - Uploaded assets and logos
+- `index.html` - Main landing page
+- `about.html` - About us
+- `portfolio.html` - Our work
+- `pricing.html` - Pricing plans
+- `news.html` - Latest news
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+---
 
-## Bundle contents
-
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `Thiink MG Website` project files (HTML prototypes, assets, components)
+*Designed and developed by [Thiink MG](https://ThiinkMG.github.io/tmg-website-2026).*
